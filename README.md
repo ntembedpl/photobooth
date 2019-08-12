@@ -1,0 +1,2 @@
+# photobooth
+Software for photobooth
