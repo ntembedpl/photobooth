@@ -1,0 +1,6 @@
+%YAML:1.0
+language: 'eng'
+customProgram: './data/programs/'
+scripts: './data/scripts/'
+usbPort: '/dev/ttyACM0'
+criovolume: 5
