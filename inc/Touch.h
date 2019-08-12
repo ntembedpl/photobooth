@@ -26,9 +26,6 @@ struct Touch
 int main_touch(std::unique_ptr<Control>&control, Touch touch,std::unique_ptr<GUI>&gui,std::unique_ptr<ConfigReader>&config);
 int Screen0_callback(std::unique_ptr<Control>&control,Touch touch,std::unique_ptr<GUI>&gui,std::unique_ptr<ConfigReader>&config);
 int Screen1_callback(std::unique_ptr<Control>&control,Touch touch,std::unique_ptr<GUI>&gui,std::unique_ptr<ConfigReader>&config);
-int Screen2_callback(std::unique_ptr<Control>&control,Touch touch,std::unique_ptr<GUI>&gui,std::unique_ptr<ConfigReader>&config);
-int Screen3_callback(std::unique_ptr<Control>&control,Touch touch,std::unique_ptr<GUI>&gui,std::unique_ptr<ConfigReader>&config);
-int Screen4_callback(std::unique_ptr<Control>&control,Touch touch,std::unique_ptr<GUI>&gui,std::unique_ptr<ConfigReader>&config);
 
 
 #endif /* TOUCH_H_ */

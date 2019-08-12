@@ -11,7 +11,9 @@ Video::Video(std::string path,int x, int y, std::string id, int width, int heigh
 	this->x=x;
 	this->y=y;
 	this->path=path;
-	this->capture=cv::VideoCapture(0);
+	this->capture=cv::VideoCapture(1);
+	this->capture.set(cv::CAP_PROP_FRAME_WIDTH,1280);
+	this->capture.set(cv::CAP_PROP_FRAME_HEIGHT,800);
 
 	this->width=width;
 	this->height=height;
@@ -20,7 +22,7 @@ Video::Video(std::string path,int x, int y, std::string id, int width, int heigh
 	this->id=id;
 
 	this->rectangle=rectangle;
-    this->pause=1;
+    this->pause=0;
 	this->capture >> this->frame;
 }
 
