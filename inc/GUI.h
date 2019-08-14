@@ -21,17 +21,19 @@ public:
 	int actual_screen;
 	bool enable;
 
-	void add_screen();
+	void add_screen(int bg);
 	void delete_screen(int number);
 	void draw_screen();
 	void turnBoxes();
 
 	std::vector<std::unique_ptr<Screen>> screen_vector;
+	cv::VideoCapture capture;
 
 private:
 	int x_res;
 	int y_res;
 	std::string WinName;
+	double fps;
 };
 
 #endif /* GUI_H_ */

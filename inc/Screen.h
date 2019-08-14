@@ -19,12 +19,12 @@
 #include "../inc/Video.h"
 #include "../inc/Image.h"
 
-#define _X 1332
-#define _Y 780
+#define _X 1280
+#define _Y 800
 
 class Screen {
 public:
-	Screen(std::string data_path,int rex_x,int res_y,std::string WindowName);
+	Screen(std::string data_path,int res_x,int res_y,std::string WindowName,int bg);
 	virtual ~Screen();
 
 	void add_button(std::string button_path, int x, int y, std::string id);
@@ -33,7 +33,7 @@ public:
 	void add_video(std::string video_path, int x, int y,std::string id, int res_x=_X, int res_y=_Y, bool rectangle=false);
 	void add_image(std::string image_path,int x, int y, std::string id);
 
-	void Draw();
+	void Draw(cv::Mat frame,double fps);
 
 	std::string touch_callback(int x, int y, int& n);
 
@@ -65,6 +65,8 @@ private:
 	cv::Mat bg;
 
 	int res_x,res_y;
+	int img_bg;
+
 };
 
 #endif /* SCREEN_H_ */

@@ -11,7 +11,11 @@ Video::Video(std::string path,int x, int y, std::string id, int width, int heigh
 	this->x=x;
 	this->y=y;
 	this->path=path;
-	this->capture=cv::VideoCapture(1);
+    //this->capture=cv::VideoCapture(0);
+    if(this->capture.isOpened()==false) {
+        this->capture.release();
+    }
+	this->capture=cv::VideoCapture(0);
 	this->capture.set(cv::CAP_PROP_FRAME_WIDTH,1280);
 	this->capture.set(cv::CAP_PROP_FRAME_HEIGHT,800);
 

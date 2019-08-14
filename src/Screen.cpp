@@ -5,12 +5,16 @@
  *      Author: robert
  */
 
+#include <opencv2/highgui/highgui_c.h>
 #include "../inc/Screen.h"
 
-Screen::Screen(std::string data_path,int res_x,int res_y, std::string WindowName) {
+Screen::Screen(std::string data_path,int res_x,int res_y, std::string WindowName,int bg) {
 
 	this->path=data_path;
-	this->bg=cv::imread(this->path+"/bg.png",1);
+	if(bg==0) {
+		this->bg = cv::imread(this->path + "/bg.png", 1);
+	}
+
 	this->elements_num=0;
 
 	this->res_x=res_x;
@@ -18,16 +22,26 @@ Screen::Screen(std::string data_path,int res_x,int res_y, std::string WindowName
 
 	this->debug=false;
 	this->WinName=WindowName;
+	this->img_bg=bg;
+
 }
 
 Screen::~Screen() {
 	// TODO Auto-generated destructor stub
 }
 
-void Screen::Draw()
+void Screen::Draw(cv::Mat frame,double fps)
 {
 	cv::Mat bg_copy;
-	bg_copy=this->bg.clone();
+
+	if(this->img_bg==0) {
+		bg_copy = this->bg.clone();
+	}
+	else if(this->img_bg==1)
+	{
+		cv::resize(frame,frame,cv::Size(1280,800),0,0,1);
+		bg_copy=frame.clone();
+	}
 
 	for(auto i=0;i<this->element_vector.size();i++)
 	{
@@ -37,6 +51,8 @@ void Screen::Draw()
 			this->element_vector[i]->draw_boundingBox(bg_copy);
 		}
 	}
+
+	cv::putText(bg_copy,std::to_string(fps),cv::Point(30,80),CV_FONT_HERSHEY_COMPLEX,3.0,cv::Scalar(0,255,255),3);
 	cv::imshow(WinName,bg_copy);
 }
 
