@@ -1,12 +1,12 @@
 #!/bin/bash
 
-#git reset --hard
-#git pull
+git reset --hard
+git pull
 
 cd build
 cmake ..
 make
-cp ./operator_HMI ..
+cp ./photobooth ..
 cd ..
 
-sudo ./operator_HMI
+sudo ./photobooth
