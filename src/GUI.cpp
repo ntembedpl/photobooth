@@ -19,10 +19,10 @@ GUI::GUI(std::string data_path,std::string WindowName,int posX, int posY) {
 	cv::moveWindow(this->WinName,posX,posY);
 	cv::setWindowProperty(this->WinName,CV_WND_PROP_FULLSCREEN,CV_WINDOW_FULLSCREEN);
 
-	this->capture=cv::VideoCapture(0);
-	this->capture.set(cv::CAP_PROP_FRAME_WIDTH,1280);
-	this->capture.set(cv::CAP_PROP_FRAME_HEIGHT,720);
-	this->capture.set(cv::CAP_PROP_FPS,60);
+	this->capture=cv::VideoCapture(1);
+	this->capture.set(cv::CAP_PROP_FRAME_WIDTH,800);
+	this->capture.set(cv::CAP_PROP_FRAME_HEIGHT,600);
+	this->capture.set(cv::CAP_PROP_FPS,30);
 }
 
 GUI::~GUI() {
