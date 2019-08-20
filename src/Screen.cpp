@@ -39,7 +39,7 @@ void Screen::Draw(cv::Mat frame,double fps)
 	}
 	else if(this->img_bg==1)
 	{
-		//cv::resize(frame,frame,cv::Size(1920,1080),0,0,1);
+		cv::resize(frame,frame,cv::Size(1920,1080),0,0,0);
 		bg_copy=frame.clone();
 	}
 

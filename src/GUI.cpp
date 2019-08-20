@@ -21,8 +21,8 @@ GUI::GUI(std::string data_path,std::string WindowName,int posX, int posY) {
 
 	this->capture=cv::VideoCapture(2);
     this->capture.set(cv::CAP_PROP_FOURCC,cv::VideoWriter::fourcc('M','J','P','G'));
-	this->capture.set(cv::CAP_PROP_FRAME_WIDTH,2304);
-	this->capture.set(cv::CAP_PROP_FRAME_HEIGHT,1536);
+	this->capture.set(cv::CAP_PROP_FRAME_WIDTH,1920);
+	this->capture.set(cv::CAP_PROP_FRAME_HEIGHT,1080);
 	this->capture.set(cv::CAP_PROP_FPS,60);
 }
 
