@@ -19,6 +19,10 @@ int main_touch(std::unique_ptr<Control>&control,Touch touch, std::unique_ptr<GUI
 		change = Screen1_callback(control,touch, gui,config);
 		break;
 	}
+    case 2: {
+        change = Screen2_callback(control,touch, gui,config);
+        break;
+    }
 	}
 	return change;
 }
@@ -28,6 +32,17 @@ int Screen0_callback(std::unique_ptr<Control>&control,Touch touch, std::unique_p
 }
 
 int Screen1_callback(std::unique_ptr<Control>&control,Touch touch, std::unique_ptr<GUI>&gui,std::unique_ptr<ConfigReader>&config) {
-	return -1;
+
+    if(touch.id=="photo") {
+        gui->actual_screen = 2;
+        return 1;
+    }
+
+    return -1;
+}
+
+int Screen2_callback(std::unique_ptr<Control>&control,Touch touch, std::unique_ptr<GUI>&gui,std::unique_ptr<ConfigReader>&config) {
+
+    return -1;
 }
 

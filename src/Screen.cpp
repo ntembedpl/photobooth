@@ -41,7 +41,8 @@ void Screen::Draw(cv::Mat frame,double fps)
 	{
 		cv::resize(frame,frame,cv::Size(1920,1080),0,0,0);
 		bg_copy=frame.clone();
-	}
+	    this->bg=frame.clone();
+    }
 
 	for(auto i=0;i<this->element_vector.size();i++)
 	{

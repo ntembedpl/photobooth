@@ -85,14 +85,30 @@ void screen0() {
 void screen1() {
     gui1->add_screen(1);
     //gui1->screen_vector[gui1->actual_screen]->add_video("/vid", 0, 0, "video", 1280, 800, false);
-    gui1->screen_vector[gui1->actual_screen]->add_button("/crio", 200, 500, "crio");
-    gui1->screen_vector[gui1->actual_screen]->add_button("/hot", 500, 500, "hot");
-    gui1->screen_vector[gui1->actual_screen]->add_button("/manual", 800, 500, "manual");
+    gui1->screen_vector[gui1->actual_screen]->add_button("/photo", 400, 800, "photo");
+    gui1->screen_vector[gui1->actual_screen]->add_image("/logo", 800, 200, "logo");
+    //gui1->screen_vector[gui1->actual_screen]->add_button("/hot", 200, 500, "hot");
+    //gui1->screen_vector[gui1->actual_screen]->add_button("/manual", 800, 500, "manual");
 }
 
 void screen2() {
     gui1->add_screen(1);
-    gui1->screen_vector[gui1->actual_screen]->add_image("/digit", 500, 500, "digit1");
+    gui1->screen_vector[gui1->actual_screen]->add_image("/digit", 710, 275, "digit1");
+    gui1->screen_vector[gui1->actual_screen]->add_image("/logo", 800, 200, "logo");
+}
+
+void PhotoClock()
+{
+    for (int i = 5; i >=0 ; i--) {
+        gui1->screen_vector[gui1->actual_screen]->setImage(i,0);
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+    }
+    gui1->screen_vector[gui1->actual_screen]->img_bg=0;
+    gui1->screen_vector[gui1->actual_screen]->setImage(6,0);
+    gui1->screen_vector[gui1->actual_screen]->setImage(1,1);
+    std::this_thread::sleep_for(std::chrono::seconds(2));
+    gui1->screen_vector[gui1->actual_screen]->img_bg=1;
+    gui1->actual_screen = 1;
 }
 
 
@@ -144,7 +160,12 @@ int main() {
 
         if (touch_flag == true) {
             touch_flag = false;
+            int signal=main_touch(control,touch,gui1,config);
 
+            if(signal==1)
+            {
+                std::thread(PhotoClock).detach();
+            }
         }
 
 

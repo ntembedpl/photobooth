@@ -52,6 +52,7 @@ public:
     std::vector<std::unique_ptr<Element>> element_vector;
 
 	bool debug;
+	int img_bg;
 
 private:
 
@@ -65,7 +66,6 @@ private:
 	cv::Mat bg;
 
 	int res_x,res_y;
-	int img_bg;
 
 };
 
