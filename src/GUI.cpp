@@ -19,10 +19,11 @@ GUI::GUI(std::string data_path,std::string WindowName,int posX, int posY) {
 	cv::moveWindow(this->WinName,posX,posY);
 	cv::setWindowProperty(this->WinName,CV_WND_PROP_FULLSCREEN,CV_WINDOW_FULLSCREEN);
 
-	this->capture=cv::VideoCapture(1);
-	this->capture.set(cv::CAP_PROP_FRAME_WIDTH,800);
-	this->capture.set(cv::CAP_PROP_FRAME_HEIGHT,600);
-	this->capture.set(cv::CAP_PROP_FPS,30);
+	this->capture=cv::VideoCapture(2);
+    this->capture.set(cv::CAP_PROP_FOURCC,cv::VideoWriter::fourcc('M','J','P','G'));
+	this->capture.set(cv::CAP_PROP_FRAME_WIDTH,2304);
+	this->capture.set(cv::CAP_PROP_FRAME_HEIGHT,1536);
+	this->capture.set(cv::CAP_PROP_FPS,60);
 }
 
 GUI::~GUI() {
@@ -36,7 +37,6 @@ void GUI::add_screen(int bg)
 		screen_vector.push_back(
 				std::make_unique<Screen>(this->path + "/s" + std::to_string(this->actual_screen), this->x_res,
 										 this->y_res, this->WinName,bg));
-
 }
 
 void GUI::delete_screen(int number)
