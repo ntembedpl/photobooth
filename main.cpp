@@ -96,10 +96,12 @@ void screen2() {
 
 void PhotoClock()
 {
-    for (int i = 5; i >=0 ; i--) {
+    for (int i = 5; i >=1 ; i--) {
         gui1->screen_vector[gui1->actual_screen]->setImage(i,0);
         std::this_thread::sleep_for(std::chrono::seconds(1));
     }
+    gui1->screen_vector[gui1->actual_screen]->setImage(0,0);
+    std::this_thread::sleep_for(std::chrono::seconds(2));
     gui1->screen_vector[gui1->actual_screen]->img_bg=0;
     gui1->screen_vector[gui1->actual_screen]->setImage(6,0);
     gui1->screen_vector[gui1->actual_screen]->setImage(1,1);
