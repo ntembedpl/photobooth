@@ -84,17 +84,14 @@ void screen0() {
 
 void screen1() {
     gui1->add_screen(1);
-    //gui1->screen_vector[gui1->actual_screen]->add_video("/vid", 0, 0, "video", 1280, 800, false);
-    gui1->screen_vector[gui1->actual_screen]->add_button("/photo", 400, 800, "photo");
-    gui1->screen_vector[gui1->actual_screen]->add_image("/logo", 800, 200, "logo");
-    //gui1->screen_vector[gui1->actual_screen]->add_button("/hot", 200, 500, "hot");
-    //gui1->screen_vector[gui1->actual_screen]->add_button("/manual", 800, 500, "manual");
+    gui1->screen_vector[gui1->actual_screen]->add_button("/photo", 820, 800, "photo");
+    gui1->screen_vector[gui1->actual_screen]->add_image("/logo", 1650, 20, "logo");
 }
 
 void screen2() {
     gui1->add_screen(1);
     gui1->screen_vector[gui1->actual_screen]->add_image("/digit", 710, 275, "digit1");
-    gui1->screen_vector[gui1->actual_screen]->add_image("/logo", 800, 200, "logo");
+    gui1->screen_vector[gui1->actual_screen]->add_image("/logo", 1650, 20, "logo");
 }
 
 void PhotoClock()
