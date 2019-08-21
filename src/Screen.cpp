@@ -43,6 +43,12 @@ void Screen::Draw(cv::Mat frame,double fps)
 		bg_copy=frame.clone();
 	    this->bg=frame.clone();
     }
+    else if(this->img_bg==2)
+    {
+        bg_copy=cv::imread("./data/photos/capt0000.jpg");
+        cv::resize(bg_copy,bg_copy,cv::Size(1920,1080),0,0,1);
+
+    }
 
 	for(auto i=0;i<this->element_vector.size();i++)
 	{

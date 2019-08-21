@@ -94,27 +94,33 @@ void screen2() {
     gui1->screen_vector[gui1->actual_screen]->add_image("/logo", 1650, 20, "logo");
 }
 
+void MakePhoto()
+{
+    system("rm ./data/photos/capt0000.jpg");
+    system("cd ./data/photos && gphoto2 --capture-image-and-download");
+}
+
 void PhotoClock()
 {
-    for (int i = 5; i >=1 ; i--) {
+    for (int i = 3; i >=1 ; i--) {
         gui1->screen_vector[gui1->actual_screen]->setImage(i,0);
         std::this_thread::sleep_for(std::chrono::seconds(1));
     }
     gui1->screen_vector[gui1->actual_screen]->setImage(0,0);
-    std::this_thread::sleep_for(std::chrono::seconds(2));
-    gui1->screen_vector[gui1->actual_screen]->img_bg=0;
+    std::thread(MakePhoto).detach();
+    std::this_thread::sleep_for(std::chrono::seconds(4));
+    gui1->screen_vector[gui1->actual_screen]->img_bg=2;
     gui1->screen_vector[gui1->actual_screen]->setImage(6,0);
     gui1->screen_vector[gui1->actual_screen]->setImage(1,1);
-    std::this_thread::sleep_for(std::chrono::seconds(2));
+    std::this_thread::sleep_for(std::chrono::seconds(4));
     gui1->screen_vector[gui1->actual_screen]->img_bg=1;
     gui1->actual_screen = 1;
 }
 
-
 int main() {
 
     SendFrame(config->config.usbPort, "Demo");
-    int f = system((config->config.scripts + "config.sh").c_str());
+    system((config->config.scripts + "config.sh").c_str());
 
     cv::setMouseCallback("1", touch_callback);
 

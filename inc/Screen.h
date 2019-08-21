@@ -66,7 +66,6 @@ private:
 	cv::Mat bg;
 
 	int res_x,res_y;
-
 };
 
 #endif /* SCREEN_H_ */
