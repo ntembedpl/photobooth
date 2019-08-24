@@ -29,6 +29,8 @@ Image::Image(std::string path, int x, int y, double resize,std::string id) {
 
 	this->id=id;
 	this->state=0;
+    this->active=1;
+
 }
 
 Image::~Image() {

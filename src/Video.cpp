@@ -12,7 +12,7 @@ Video::Video(std::string path,int x, int y, std::string id, int width, int heigh
 	this->y=y;
 	this->path=path;
 	this->state=0;
-    this->capture=cv::VideoCapture(this->path+"_"+std::to_string(this->state)+".avi");
+    this->capture=cv::VideoCapture(this->path+"_"+std::to_string(this->state)+".mp4");
 
 	this->width=width;
 	this->height=height;

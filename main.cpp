@@ -81,7 +81,10 @@ void touch_callback(int event, int x, int y, int flags, void *) {
 
 void screen0() {
     gui1->add_screen(0);
-    //gui1->screen_vector[gui1->actual_screen]->add_video("/intro",0,0,"intro",1920,1080);
+    gui1->screen_vector[gui1->actual_screen]->add_button("/authors", 1670, 0, "authors");
+    gui1->screen_vector[gui1->actual_screen]->add_video("/intro",0,0,"intro",1920,1080);
+    gui1->screen_vector[gui1->actual_screen]->add_button("/authors", 1670, 0, "authors");
+
 }
 
 void screen1() {
@@ -94,6 +97,10 @@ void screen2() {
     gui1->add_screen(1);
     gui1->screen_vector[gui1->actual_screen]->add_image("/digit", 710, 275, "digit1");
     gui1->screen_vector[gui1->actual_screen]->add_image("/logo", 1650, 20, "logo");
+}
+void screen3() {
+    gui1->add_screen(0);
+    gui1->screen_vector[gui1->actual_screen]->add_image("/team", 0, 0, "team");
 }
 
 void MakePhoto()
@@ -125,7 +132,7 @@ void ScreenSaver()
     {
         std::this_thread::sleep_for(std::chrono::seconds(1));
         demoCounter++;
-        if (demoCounter>10)
+        if (demoCounter>100)
         {
             gui1->actual_screen=0;
         }
@@ -143,6 +150,7 @@ int main() {
     screen0();
     screen1();
     screen2();
+    screen3();
 
     gui1->actual_screen = 0;
 
@@ -165,7 +173,7 @@ int main() {
         }
     }
 #endif
-    gui1->actual_screen = 1;
+    gui1->actual_screen = 0;
 
 
     while (1) {
