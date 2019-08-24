@@ -11,13 +11,8 @@ Video::Video(std::string path,int x, int y, std::string id, int width, int heigh
 	this->x=x;
 	this->y=y;
 	this->path=path;
-    //this->capture=cv::VideoCapture(0);
-    if(this->capture.isOpened()==false) {
-        this->capture.release();
-    }
-	this->capture=cv::VideoCapture(0);
-	this->capture.set(cv::CAP_PROP_FRAME_WIDTH,1280);
-	this->capture.set(cv::CAP_PROP_FRAME_HEIGHT,800);
+	this->state=0;
+    this->capture=cv::VideoCapture(this->path+"_"+std::to_string(this->state)+".avi");
 
 	this->width=width;
 	this->height=height;
@@ -28,6 +23,7 @@ Video::Video(std::string path,int x, int y, std::string id, int width, int heigh
 	this->rectangle=rectangle;
     this->pause=0;
 	this->capture >> this->frame;
+	this->active=1;
 }
 
 Video::~Video() {
@@ -47,8 +43,18 @@ void Video::draw(cv::Mat bg)
 	}
 	else
 	{
-		//this->is_end=1;
-		//this->capture=cv::VideoCapture(0);
+		state++;
+		this->capture=cv::VideoCapture(this->path+"_"+std::to_string(this->state)+".mp4");
+		this->capture >> this->frame;
+		if(this->frame.cols==0)
+		{
+			state=0;
+			this->capture=cv::VideoCapture(this->path+"_"+std::to_string(this->state)+".mp4");
+			this->capture >> this->frame;
+		}
+
+		cv::resize(this->frame,this->frame,cv::Size(this->width,this->height),0,0,1);
+		this->frame.copyTo(bg(cv::Rect(this->x,this->y,this->frame.cols,this->frame.rows)));
 	}
 	if(rectangle)
 	{

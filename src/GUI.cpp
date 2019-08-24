@@ -20,6 +20,7 @@ GUI::GUI(std::string data_path,std::string WindowName,int posX, int posY) {
 	cv::setWindowProperty(this->WinName,CV_WND_PROP_FULLSCREEN,CV_WINDOW_FULLSCREEN);
 
 	this->capture=cv::VideoCapture(1);
+
     this->capture.set(cv::CAP_PROP_FOURCC,cv::VideoWriter::fourcc('M','J','P','G'));
 	this->capture.set(cv::CAP_PROP_FRAME_WIDTH,1920);
 	this->capture.set(cv::CAP_PROP_FRAME_HEIGHT,1080);
@@ -46,18 +47,23 @@ void GUI::delete_screen(int number)
 
 void GUI::draw_screen()
 {
-	int64 start=cv::getTickCount();
+	std::chrono::steady_clock::time_point begin= std::chrono::steady_clock::now();
 
 	cv::Mat temp;
 	this->capture>>temp;
 	this->screen_vector[this->actual_screen]->Draw(temp,this->fps);
-	//std::this_thread::sleep_for(std::chrono::milliseconds(2000));
 
+    std::chrono::steady_clock::time_point end= std::chrono::steady_clock::now();
+    auto count=	std::chrono::duration_cast<std::chrono::milliseconds>(end-begin).count();
 
-	//if (diff.count() < 20) {
-		//cv::waitKey(20 - count);
-	//}
-	this->fps=cv::getTickFrequency()/(cv::getTickCount()-start);
+    if (count<10) {
+        std::this_thread::sleep_for(std::chrono::milliseconds(10-count));
+    }
+    end= std::chrono::steady_clock::now();
+    count=	std::chrono::duration_cast<std::chrono::milliseconds>(end-begin).count();
+
+    this->fps=(1000/double(count));
+
 }
 
 void GUI::turnBoxes()

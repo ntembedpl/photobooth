@@ -33,6 +33,7 @@ Touch touch;
 
 void touch_callback(int event, int x, int y, int flags, void *) {
 
+    demoCounter=0;
 
     if (event == 1) {
 
@@ -80,6 +81,7 @@ void touch_callback(int event, int x, int y, int flags, void *) {
 
 void screen0() {
     gui1->add_screen(0);
+    //gui1->screen_vector[gui1->actual_screen]->add_video("/intro",0,0,"intro",1920,1080);
 }
 
 void screen1() {
@@ -117,8 +119,22 @@ void PhotoClock()
     gui1->actual_screen = 1;
 }
 
+void ScreenSaver()
+{
+    while(1)
+    {
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+        demoCounter++;
+        if (demoCounter>10)
+        {
+            gui1->actual_screen=0;
+        }
+    }
+}
+
 int main() {
 
+    std::thread(ScreenSaver).detach();
     SendFrame(config->config.usbPort, "Demo");
     system((config->config.scripts + "config.sh").c_str());
 

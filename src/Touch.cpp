@@ -28,7 +28,13 @@ int main_touch(std::unique_ptr<Control>&control,Touch touch, std::unique_ptr<GUI
 }
 
 int Screen0_callback(std::unique_ptr<Control>&control,Touch touch, std::unique_ptr<GUI>&gui,std::unique_ptr<ConfigReader>&config) {
-	return 0;
+
+    if(touch.id=="intro") {
+        gui->actual_screen = 1;
+        return 0;
+    }
+
+    return -1;
 }
 
 int Screen1_callback(std::unique_ptr<Control>&control,Touch touch, std::unique_ptr<GUI>&gui,std::unique_ptr<ConfigReader>&config) {

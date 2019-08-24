@@ -30,6 +30,7 @@ private:
 
 	bool rectangle;
     cv::Mat frame;
+	int state;
 };
 
 #endif /* VIDEO_H_ */
